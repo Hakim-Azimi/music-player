@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { musics } from './data';
+import MusicInfo from './components/MusicInfo';
+import MusicList from './components/List';
 
 function App() {
+  const [selectedMusic, setSelectedMusic] = useState(null);
+
+  const handleMusicClick = (music) => {
+    setSelectedMusic(music);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+            <MusicInfo music={selectedMusic} />
+
+    <MusicList handleMusicClick={handleMusicClick} musics={musics}/>
     </div>
   );
 }
